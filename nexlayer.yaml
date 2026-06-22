@@ -1,0 +1,40 @@
+application:
+  name: saleor
+  pods:
+  - name: api
+    image: ghcr.io/saleor/saleor:latest
+    path: /
+    servicePorts:
+    - 8000
+    vars:
+      DATABASE_URL: "postgres://saleor:saleor@postgres.pod:5432/saleor"
+      CELERY_BROKER_URL: "redis://redis.pod:6379/0"
+      SECRET_KEY: "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1"
+      ALLOWED_HOSTS: "relaxed-weasel-saleor.cloud.nexlayer.ai,localhost"
+      DEFAULT_FROM_EMAIL: "armond@nexlayer.com"
+      ENABLE_DEBUG_TOOLBAR: "false"
+      ENABLE_ACCOUNT_CONFIRMATION_BY_EMAIL: "false"
+    volumes:
+    - name: saleor-media
+      mountPath: /app/media
+      size: 10Gi
+  - name: postgres
+    image: postgres:15-alpine
+    servicePorts:
+    - 5432
+    vars:
+      POSTGRES_DB: saleor
+      POSTGRES_USER: saleor
+      POSTGRES_PASSWORD: saleor
+    volumes:
+    - name: saleor-db
+      mountPath: /var/lib/postgresql/data
+      size: 5Gi
+  - name: redis
+    image: redis:7-alpine
+    servicePorts:
+    - 6379
+    volumes:
+    - name: saleor-redis
+      mountPath: /data
+      size: 2Gi
