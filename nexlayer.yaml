@@ -10,7 +10,7 @@ application:
       DATABASE_URL: "postgres://saleor:saleor@postgres.pod:5432/saleor"
       CELERY_BROKER_URL: "redis://redis.pod:6379/0"
       SECRET_KEY: "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1"
-      ALLOWED_HOSTS: "relaxed-weasel-saleor.cloud.nexlayer.ai,localhost"
+      ALLOWED_HOSTS: "relaxed-weasel-saleor.cloud.nexlayer.ai,saleor-api-service,saleor-api-service.relaxed-weasel.svc.cluster.local,localhost,127.0.0.1"
       DEFAULT_FROM_EMAIL: "armond@nexlayer.com"
       ENABLE_DEBUG_TOOLBAR: "false"
       ENABLE_ACCOUNT_CONFIRMATION_BY_EMAIL: "false"
