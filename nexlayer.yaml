@@ -19,7 +19,7 @@ application:
       mountPath: /app/media
       size: 10Gi
   - name: postgres
-    image: postgres:15-alpine
+    image: mirror.gcr.io/library/postgres:15-alpine
     servicePorts:
     - 5432
     vars:
@@ -31,7 +31,7 @@ application:
       mountPath: /var/lib/postgresql/data
       size: 5Gi
   - name: redis
-    image: redis:7-alpine
+    image: mirror.gcr.io/library/redis:7-alpine
     servicePorts:
     - 6379
     volumes:
